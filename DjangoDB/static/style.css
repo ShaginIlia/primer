@@ -1,0 +1,45 @@
+body {
+	font-family: Arial, sans-serif;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+h1 {
+	text-align: center;
+}
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+.pagination a, .pagination span {
+	padding: 8px 16px;
+	text-decoration: none;
+	margin: 0 4px;
+}
+/* Style 1: Square buttons */
+.pagination.style1 a, .pagination.style1 span {
+	color: #000;
+	border: 1px solid #ddd;
+}
+.pagination.style1 a:hover {
+	background-color: #ddd;
+}
+.pagination.style1 .current {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+/* Style 2: Rounded buttons with different colors */
+.pagination.style2 a, .pagination.style2 span {
+	color: #fff;
+	border-radius: 50%;
+	background-color: #3498db;
+}
+.pagination.style2 a:hover {
+	background-color: #2980b9;
+}
+.pagination.style2 .current {
+	background-color: #e74c3c;
+}

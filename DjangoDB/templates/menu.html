@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Главная страница {% endblock %}</title>
+</head>
+<body>
+    <header>
+        {% block header %}
+        <h1>{{ pagename ]}</h1>
+        {% endblock %}
+    </header>
+
+    <nav>
+        {% block menu %}
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

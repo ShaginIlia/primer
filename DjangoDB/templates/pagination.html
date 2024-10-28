@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" href="{% static 'styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+<div class="style-selector">
+        <form method="get" action="">
+            <label for="style-select">Choose pagination style:</label>
+            <select id="style-select" name="style" onchange="this.form.submit()">
+                <option value="style1" {% if request.GET.style == 'style1' %}selected{% endif %}>Square Buttons</option>
+                <option value="style2" {% if request.GET.style == 'style2' %}selected{% endif %}>Rounded Buttons</option>
+            </select>
+            {% if request.GET.page %}
+                <input type="hidden" name="page" value="{{ request.GET.page }}">
+            {% endif %}
+        </form>
+</div>
+<div class="row">
+        {% for post in page_obj %}
+            <div class="col-md-4">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <p>{{ post.created_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+<footer>
+    {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination {% if request.GET.style %}{{ request.GET.style }}{% else %}style1{% endif %}">
+                {% if page_obj.has_previous %}
+                    <a class="page-link"
+                       href="?page={{ page_obj.previous_page_number }}{% if request.GET.style %}&style={{ request.GET.style }}{% endif %}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% else %}
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% endif %}
+
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <a class="page-link" href="#">{{ i }}</a>
+                    {% else %}
+                        <a class="page-link" href="?page={{ i }}
+                        {% if request.GET.style %}&style={{ request.GET.style }}{% endif %}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}
+                    {% if request.GET.style %}&style={{ request.GET.style }}{% endif %}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% else %}
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</footer>
+</body>
+</html>
