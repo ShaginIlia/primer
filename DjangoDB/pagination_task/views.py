@@ -4,7 +4,7 @@ from .models import *
 
 
 def main(request):
-    posts = Post.objects.all().order_by('-created_at')
+    posts = Article.objects.all().order_by('-created_at')
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -14,4 +14,4 @@ def main(request):
         "Authors": Authors,
         "page_obj": page_obj,
     }
-    return render(request, 'paginator.html', context)
+    return render(request, 'pagination.html', context)

@@ -9,9 +9,9 @@ class Author(models.Model):
         return self.name
 
 
-class Post(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=50)
-    authors = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='posts')
+    authors = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='article')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
